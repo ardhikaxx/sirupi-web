@@ -2,48 +2,83 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'nip',
+        'jabatan',
+        'role',
+        'unit_kerja_id',
+        'telepon',
+        'foto',
+        'is_active',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function unitKerja()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(UnitKerja::class);
+    }
+
+    public function paketPengadaans()
+    {
+        return $this->hasMany(PaketPengadaan::class, 'user_id');
+    }
+
+    public function riwayatPersetujuans()
+    {
+        return $this->hasMany(RiwayatPersetujuan::class);
+    }
+
+    public function dokumens()
+    {
+        return $this->hasMany(Dokumen::class, 'uploaded_by');
+    }
+
+    public function activityLogs()
+    {
+        return $this->hasMany(ActivityLog::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isOperator(): bool
+    {
+        return $this->role === 'operator';
+    }
+
+    public function isVerifikator(): bool
+    {
+        return $this->role === 'verifikator';
+    }
+
+    public function isPimpinan(): bool
+    {
+        return $this->role === 'pimpinan';
+    }
+
+    public function isAuditor(): bool
+    {
+        return $this->role === 'auditor';
     }
 }
