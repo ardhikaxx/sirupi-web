@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             // Super Admin
             [
                 'name' => 'Super Administrator',
-                'email' => 'superadmin@sirupi.id',
+                'email' => 'superadmin@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199001012024011001',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             // Admin
             [
                 'name' => 'Admin Sistem',
-                'email' => 'admin@sirupi.id',
+                'email' => 'admin@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199001012024011002',
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             // Operators - 1 per unit
             [
                 'name' => 'Operator Sekretariat',
-                'email' => 'operator01@sirupi.id',
+                'email' => 'operator01@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199201012024012001',
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Perencanaan',
-                'email' => 'operator02@sirupi.id',
+                'email' => 'operator02@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199202012024012002',
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Keuangan',
-                'email' => 'operator03@sirupi.id',
+                'email' => 'operator03@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199203012024012003',
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator SDM',
-                'email' => 'operator04@sirupi.id',
+                'email' => 'operator04@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199204012024012004',
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator TI',
-                'email' => 'operator05@sirupi.id',
+                'email' => 'operator05@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199205012024012005',
@@ -104,7 +104,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Operasional',
-                'email' => 'operator06@sirupi.id',
+                'email' => 'operator06@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199206012024012006',
@@ -116,7 +116,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Infrastruktur',
-                'email' => 'operator07@sirupi.id',
+                'email' => 'operator07@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199207012024012007',
@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Pelayanan Publik',
-                'email' => 'operator08@sirupi.id',
+                'email' => 'operator08@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199208012024012008',
@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Hukum',
-                'email' => 'operator09@sirupi.id',
+                'email' => 'operator09@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199209012024012009',
@@ -152,7 +152,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Operator Umum',
-                'email' => 'operator10@sirupi.id',
+                'email' => 'operator10@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199210012024012010',
@@ -165,7 +165,7 @@ class UserSeeder extends Seeder
             // Verifikator
             [
                 'name' => 'Verifikator Anggaran',
-                'email' => 'verifikator01@sirupi.id',
+                'email' => 'verifikator01@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199301012024013001',
@@ -177,7 +177,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Verifikator Teknis',
-                'email' => 'verifikator02@sirupi.id',
+                'email' => 'verifikator02@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199302012024013002',
@@ -190,7 +190,7 @@ class UserSeeder extends Seeder
             // Pimpinan
             [
                 'name' => 'Dr. H. Muhammad Faisal, S.E., M.M.',
-                'email' => 'pimpinan@sirupi.id',
+                'email' => 'pimpinan@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '196801011998011001',
@@ -203,7 +203,7 @@ class UserSeeder extends Seeder
             // Auditor
             [
                 'name' => 'Auditor Internal',
-                'email' => 'auditor@sirupi.id',
+                'email' => 'auditor@gmail.com',
                 'password' => $password,
                 'email_verified_at' => $now,
                 'nip' => '199401012024014001',
