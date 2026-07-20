@@ -7,7 +7,7 @@
     <div class="row min-vh-75 align-items-center">
         <div class="col-lg-8 mx-auto text-center py-5">
             <h1 class="display-4 fw-bold mb-3">Selamat Datang di <span class="text-primary">SIRUPI</span></h1>
-            <p class="lead text-muted mb-4">Sistem Informasi Rencana Umum Pengadaan Indonesia — Portal transparansi rencana pengadaan barang dan jasa pemerintah.</p>
+            <p class="lead text-muted mb-4">Sistem Informasi Rencana Umum Pengadaan Internal — Portal transparansi rencana pengadaan barang dan jasa pemerintah.</p>
 
             <form action="{{ route('publik.paket.search') }}" method="GET" class="mb-5">
                 <div class="input-group input-group-lg shadow-sm">

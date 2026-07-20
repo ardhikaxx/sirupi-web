@@ -65,7 +65,7 @@
                 </div>
                 <div class="text-center mt-3">
                     <p class="text-muted small">
-                        <i class="fas fa-cubes me-1"></i>SIRUPI &mdash; Sistem Informasi Rencana Umum Pengadaan Indonesia
+                        <i class="fas fa-cubes me-1"></i>SIRUPI &mdash; Sistem Informasi Rencana Umum Pengadaan Internal
                     </p>
                 </div>
             </div>

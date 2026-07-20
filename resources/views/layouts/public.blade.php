@@ -24,7 +24,7 @@
             <div class="d-flex align-items-center justify-content-between py-3">
                 <a href="{{ url('/') }}" class="text-decoration-none">
                     <span class="fs-3 fw-bold text-dark"><i class="fas fa-cubes text-primary me-2"></i>SIRUPI</span>
-                    <small class="text-muted d-none d-md-inline ms-2">Sistem Informasi Rencana Umum Pengadaan Indonesia</small>
+                    <small class="text-muted d-none d-md-inline ms-2">Sistem Informasi Rencana Umum Pengadaan Internal</small>
                 </a>
                 <div>
                     @auth
@@ -48,7 +48,7 @@
     <footer class="bg-white border-top py-4 mt-auto">
         <div class="container text-center">
             <p class="mb-1 text-muted small">
-                &copy; {{ date('Y') }} <strong>SIRUPI</strong> - Sistem Informasi Rencana Umum Pengadaan Indonesia
+                &copy; {{ date('Y') }} <strong>SIRUPI</strong> - Sistem Informasi Rencana Umum Pengadaan Internal
             </p>
             <p class="mb-0 text-muted small">
                 Dikembangkan oleh Bagian Pengadaan Barang dan Jasa
