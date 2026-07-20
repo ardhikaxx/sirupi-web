@@ -71,7 +71,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{{ route('activity-log.data') }}',
+                url: '{{ route('admin.activity-log.data') }}',
                 data: function(d) {
                     d.user_id = $('#filterUser').val();
                     d.tipe = $('#filterTipe').val();

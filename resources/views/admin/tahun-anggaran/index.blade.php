@@ -51,7 +51,7 @@
                                 <button class="btn btn-sm btn-success btn-aktifkan" data-id="{{ $ta->id }}">
                                     <i class="fas fa-check me-1"></i>Aktifkan
                                 </button>
-                                <form id="aktifkan-form-{{ $ta->id }}" action="{{ route('admin.tahun-anggaran.set-active', $ta->id) }}" method="POST" class="d-none">
+                                <form id="aktifkan-form-{{ $ta->id }}" action="{{ route('admin.tahun-anggaran.activate', $ta->id) }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             @endif

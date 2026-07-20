@@ -24,223 +24,192 @@
     @stack('styles')
 </head>
 <body>
-    <div class="d-flex" id="wrapper">
-        <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" id="sidebar">
-            <a href="{{ route('dashboard') }}" class="sidebar-brand d-flex align-items-center mb-3 text-white text-decoration-none">
-                <span class="fs-4 fw-bold"><i class="fas fa-cubes me-2"></i>SIRUPI</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto" id="sidebarMenu">
+    <div id="wrapper">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-icon">
+                    <i class="fas fa-cubes"></i>
+                </div>
+                <span>SIRUPI</span>
+            </div>
+
+            <ul class="sidebar-nav" id="sidebarMenu">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link text-white {{ request()->routeIs('*.dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('*.dashboard') ? 'active' : '' }}">
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
                     </a>
                 </li>
 
                 @if(in_array(auth()->user()->role, ['super_admin', 'admin']))
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Master Data</small>
+                <li class="nav-item">
+                    <small class="nav-section-title">Master Data</small>
+                </li>
+                @foreach([
+                    ['route' => 'admin.unit-kerja.index', 'icon' => 'fa-building', 'label' => 'Unit Kerja', 'pattern' => 'admin/unit-kerja*'],
+                    ['route' => 'admin.user.index', 'icon' => 'fa-users', 'label' => 'Users', 'pattern' => 'admin/user*'],
+                    ['route' => 'admin.tahun-anggaran.index', 'icon' => 'fa-calendar', 'label' => 'Tahun Anggaran', 'pattern' => 'admin/tahun-anggaran*'],
+                    ['route' => 'admin.program.index', 'icon' => 'fa-book', 'label' => 'Program', 'pattern' => 'admin/program*'],
+                    ['route' => 'admin.kegiatan.index', 'icon' => 'fa-tasks', 'label' => 'Kegiatan', 'pattern' => 'admin/kegiatan*'],
+                    ['route' => 'admin.sub-kegiatan.index', 'icon' => 'fa-list-check', 'label' => 'Sub Kegiatan', 'pattern' => 'admin/sub-kegiatan*'],
+                    ['route' => 'admin.sumber-dana.index', 'icon' => 'fa-money-bill-wave', 'label' => 'Sumber Dana', 'pattern' => 'admin/sumber-dana*'],
+                    ['route' => 'admin.jenis-pengadaan.index', 'icon' => 'fa-tag', 'label' => 'Jenis Pengadaan', 'pattern' => 'admin/jenis-pengadaan*'],
+                    ['route' => 'admin.metode-pengadaan.index', 'icon' => 'fa-cogs', 'label' => 'Metode Pengadaan', 'pattern' => 'admin/metode-pengadaan*'],
+                    ['route' => 'admin.kategori.index', 'icon' => 'fa-layer-group', 'label' => 'Kategori', 'pattern' => 'admin/kategori*'],
+                    ['route' => 'admin.satuan.index', 'icon' => 'fa-ruler', 'label' => 'Satuan', 'pattern' => 'admin/satuan*'],
+                    ['route' => 'admin.penyedia.index', 'icon' => 'fa-truck', 'label' => 'Penyedia', 'pattern' => 'admin/penyedia*'],
+                    ['route' => 'admin.pejabat.index', 'icon' => 'fa-user-tie', 'label' => 'Pejabat', 'pattern' => 'admin/pejabat*'],
+                ] as $item)
+                <li class="nav-item">
+                    <a href="{{ route($item['route']) }}" class="nav-link {{ request()->is($item['pattern']) ? 'active' : '' }}">
+                        <i class="fas {{ $item['icon'] }} nav-icon"></i>
+                        <span class="nav-text">{{ $item['label'] }}</span>
+                    </a>
+                </li>
+                @endforeach
+                <li class="nav-item">
+                    <small class="nav-section-title">Lainnya</small>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.unit-kerja.index') }}" class="nav-link text-white {{ request()->is('admin/unit-kerja*') ? 'active' : '' }}">
-                        <i class="fas fa-building me-2"></i>Unit Kerja
+                    <a href="{{ route('admin.paket.index') }}" class="nav-link {{ request()->is('admin/paket*') ? 'active' : '' }}">
+                        <i class="fas fa-box nav-icon"></i>
+                        <span class="nav-text">Paket Pengadaan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.user.index') }}" class="nav-link text-white {{ request()->is('admin/user*') ? 'active' : '' }}">
-                        <i class="fas fa-users me-2"></i>Users
+                    <a href="{{ route('admin.laporan.index') }}" class="nav-link {{ request()->is('admin/laporan*') ? 'active' : '' }}">
+                        <i class="fas fa-chart-bar nav-icon"></i>
+                        <span class="nav-text">Laporan</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.tahun-anggaran.index') }}" class="nav-link text-white {{ request()->is('admin/tahun-anggaran*') ? 'active' : '' }}">
-                        <i class="fas fa-calendar me-2"></i>Tahun Anggaran
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.program.index') }}" class="nav-link text-white {{ request()->is('admin/program*') ? 'active' : '' }}">
-                        <i class="fas fa-book me-2"></i>Program
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.kegiatan.index') }}" class="nav-link text-white {{ request()->is('admin/kegiatan*') ? 'active' : '' }}">
-                        <i class="fas fa-tasks me-2"></i>Kegiatan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.sub-kegiatan.index') }}" class="nav-link text-white {{ request()->is('admin/sub-kegiatan*') ? 'active' : '' }}">
-                        <i class="fas fa-list-check me-2"></i>Sub Kegiatan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.sumber-dana.index') }}" class="nav-link text-white {{ request()->is('admin/sumber-dana*') ? 'active' : '' }}">
-                        <i class="fas fa-money-bill-wave me-2"></i>Sumber Dana
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.jenis-pengadaan.index') }}" class="nav-link text-white {{ request()->is('admin/jenis-pengadaan*') ? 'active' : '' }}">
-                        <i class="fas fa-tag me-2"></i>Jenis Pengadaan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.metode-pengadaan.index') }}" class="nav-link text-white {{ request()->is('admin/metode-pengadaan*') ? 'active' : '' }}">
-                        <i class="fas fa-cogs me-2"></i>Metode Pengadaan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.kategori.index') }}" class="nav-link text-white {{ request()->is('admin/kategori*') ? 'active' : '' }}">
-                        <i class="fas fa-layer-group me-2"></i>Kategori
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.satuan.index') }}" class="nav-link text-white {{ request()->is('admin/satuan*') ? 'active' : '' }}">
-                        <i class="fas fa-ruler me-2"></i>Satuan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.penyedia.index') }}" class="nav-link text-white {{ request()->is('admin/penyedia*') ? 'active' : '' }}">
-                        <i class="fas fa-truck me-2"></i>Penyedia
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.pejabat.index') }}" class="nav-link text-white {{ request()->is('admin/pejabat*') ? 'active' : '' }}">
-                        <i class="fas fa-user-tie me-2"></i>Pejabat
-                    </a>
-                </li>
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Lainnya</small>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.paket.index') }}" class="nav-link text-white {{ request()->is('admin/paket*') ? 'active' : '' }}">
-                        <i class="fas fa-box me-2"></i>Paket Pengadaan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.laporan.index') }}" class="nav-link text-white {{ request()->is('admin/laporan*') ? 'active' : '' }}">
-                        <i class="fas fa-chart-bar me-2"></i>Laporan
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.activity-log') }}" class="nav-link text-white {{ request()->is('admin/activity-log*') ? 'active' : '' }}">
-                        <i class="fas fa-history me-2"></i>Activity Log
+                    <a href="{{ route('admin.activity-log') }}" class="nav-link {{ request()->is('admin/activity-log*') ? 'active' : '' }}">
+                        <i class="fas fa-history nav-icon"></i>
+                        <span class="nav-text">Activity Log</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user()->role === 'operator')
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Menu</small>
+                <li class="nav-item">
+                    <small class="nav-section-title">Menu</small>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('operator.paket.index') }}" class="nav-link text-white {{ request()->is('operator/paket*') ? 'active' : '' }}">
-                        <i class="fas fa-box me-2"></i>Paket Saya
+                    <a href="{{ route('operator.paket.index') }}" class="nav-link {{ request()->is('operator/paket*') ? 'active' : '' }}">
+                        <i class="fas fa-box nav-icon"></i>
+                        <span class="nav-text">Paket Saya</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user()->role === 'verifikator')
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Menu</small>
+                <li class="nav-item">
+                    <small class="nav-section-title">Menu</small>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('verifikator.paket.index') }}" class="nav-link text-white {{ request()->is('verifikator/paket*') ? 'active' : '' }}">
-                        <i class="fas fa-check-double me-2"></i>Verifikasi Paket
+                    <a href="{{ route('verifikator.paket.index') }}" class="nav-link {{ request()->is('verifikator/paket*') ? 'active' : '' }}">
+                        <i class="fas fa-check-double nav-icon"></i>
+                        <span class="nav-text">Verifikasi Paket</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user()->role === 'pimpinan')
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Menu</small>
+                <li class="nav-item">
+                    <small class="nav-section-title">Menu</small>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('pimpinan.paket.index') }}" class="nav-link text-white {{ request()->is('pimpinan/paket*') ? 'active' : '' }}">
-                        <i class="fas fa-file-signature me-2"></i>Persetujuan Paket
+                    <a href="{{ route('pimpinan.paket.index') }}" class="nav-link {{ request()->is('pimpinan/paket*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature nav-icon"></i>
+                        <span class="nav-text">Persetujuan Paket</span>
                     </a>
                 </li>
                 @endif
 
                 @if(auth()->user()->role === 'auditor')
-                <li class="nav-item mt-2">
-                    <small class="text-secondary text-uppercase px-3 fw-semibold">Menu</small>
+                <li class="nav-item">
+                    <small class="nav-section-title">Menu</small>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('auditor.paket.index') }}" class="nav-link text-white {{ request()->is('auditor/paket*') ? 'active' : '' }}">
-                        <i class="fas fa-folder-open me-2"></i>Data Paket
+                    <a href="{{ route('auditor.paket.index') }}" class="nav-link {{ request()->is('auditor/paket*') ? 'active' : '' }}">
+                        <i class="fas fa-folder-open nav-icon"></i>
+                        <span class="nav-text">Data Paket</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('auditor.activity-log') }}" class="nav-link text-white {{ request()->is('auditor/activity-log*') ? 'active' : '' }}">
-                        <i class="fas fa-history me-2"></i>Activity Log
+                    <a href="{{ route('auditor.activity-log') }}" class="nav-link {{ request()->is('auditor/activity-log*') ? 'active' : '' }}">
+                        <i class="fas fa-history nav-icon"></i>
+                        <span class="nav-text">Activity Log</span>
                     </a>
                 </li>
                 @endif
             </ul>
-            <hr>
-            <div class="dropdown">
-                <button class="btn btn-outline-light dropdown-toggle w-100 d-flex align-items-center" type="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-user-circle me-2"></i>
-                    <span class="text-truncate">{{ Auth::user()->name ?? 'User' }}</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark w-100">
-                    <li><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-id-card me-2"></i>Profil</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
-                        </form>
-                    </li>
-                </ul>
+
+            <div class="sidebar-footer">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle w-100 d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-2"></i>
+                        <span class="text-truncate">{{ Auth::user()->name ?? 'User' }}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark w-100">
+                        <li><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-id-card me-2"></i>Profil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div id="page-content-wrapper" class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-3 py-2 sticky-top">
-                <div class="container-fluid">
-                    <button class="btn btn-sm btn-outline-secondary me-3" id="sidebarToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <nav aria-label="breadcrumb" class="flex-grow-1">
-                        <ol class="breadcrumb mb-0">
-                            @yield('breadcrumb')
-                        </ol>
-                    </nav>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary position-relative" type="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-bell"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" style="width:300px">
-                                <li><h6 class="dropdown-header">Notifikasi</h6></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-center text-muted small" href="#">Tidak ada notifikasi</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                            @php
-                                $roleLabels = ['super_admin' => 'Super Admin', 'admin' => 'Admin', 'operator' => 'Operator', 'verifikator' => 'Verifikator', 'pimpinan' => 'Pimpinan', 'auditor' => 'Auditor'];
-                                $roleColors = ['super_admin' => 'danger', 'admin' => 'primary', 'operator' => 'success', 'verifikator' => 'info', 'pimpinan' => 'warning', 'auditor' => 'secondary'];
-                            @endphp
-                            <button class="btn btn-sm dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown">
-                                <span class="badge bg-{{ $roleColors[Auth::user()->role] ?? 'secondary' }} me-2">{{ $roleLabels[Auth::user()->role] ?? Auth::user()->role }}</span>
-                                <span>{{ Auth::user()->name ?? 'User' }}</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user-cog me-2"></i>Profil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
+        <div class="main-content" id="mainContent">
+            <nav class="navbar-top">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav aria-label="breadcrumb" class="flex-grow-1">
+                    <ol class="breadcrumb mb-0">
+                        @yield('breadcrumb')
+                    </ol>
+                </nav>
+                <div class="navbar-nav-right">
+                    <div class="nav-item dropdown">
+                        <button class="btn-icon" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" style="width:300px">
+                            <li><h6 class="dropdown-header">Notifikasi</h6></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center text-muted small" href="#">Tidak ada notifikasi</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-item dropdown">
+                        @php
+                            $roleLabels = ['super_admin' => 'Super Admin', 'admin' => 'Admin', 'operator' => 'Operator', 'verifikator' => 'Verifikator', 'pimpinan' => 'Pimpinan', 'auditor' => 'Auditor'];
+                            $roleColors = ['super_admin' => 'danger', 'admin' => 'primary', 'operator' => 'success', 'verifikator' => 'info', 'pimpinan' => 'warning', 'auditor' => 'secondary'];
+                        @endphp
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <span class="user-avatar">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            <span>{{ Auth::user()->name ?? 'User' }}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user-cog me-2"></i>Profil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger"><i class="fas fa-sign-out-alt me-2"></i>Keluar</button>
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
 
-            <div class="container-fluid p-4">
+            <div class="content-wrapper">
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
@@ -279,11 +248,11 @@
         document.addEventListener('DOMContentLoaded', function () {
             const sidebarToggle = document.getElementById('sidebarToggle');
             const sidebar = document.getElementById('sidebar');
-            const wrapper = document.getElementById('wrapper');
+            const mainContent = document.getElementById('mainContent');
 
             sidebarToggle.addEventListener('click', function () {
                 sidebar.classList.toggle('collapsed');
-                wrapper.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('expanded');
             });
 
             flatpickr.setDefaults({ locale: 'id', dateFormat: 'd/m/Y' });

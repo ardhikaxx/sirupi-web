@@ -153,8 +153,8 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const labels = @json($statusLabels ?? ['Draft', 'Diajukan', 'Disetujui', 'Ditolak']);
-        const data   = @json($statusData ?? [0, 0, 0, 0]);
+        const labels = {{ json_encode($statusLabels ?? ['Draft', 'Diajukan', 'Disetujui', 'Ditolak']) }};
+        const data   = {{ json_encode($statusData ?? [0, 0, 0, 0]) }};
 
         new Chart(document.getElementById('chartStatus'), {
             type: 'pie',

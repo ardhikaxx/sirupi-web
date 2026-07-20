@@ -177,12 +177,12 @@
             order: [[0, 'desc']]
         });
 
-        var statusLabels = @json($ringkasanStatus->pluck('status')->map(function($s) {
+        var statusLabels = {{ json_encode($ringkasanStatus->pluck('status')->map(function($s) {
             $labels = ['draft' => 'Draft', 'diajukan' => 'Diajukan', 'diverifikasi' => 'Terverifikasi', 'dikembalikan' => 'Dikembalikan', 'disetujui' => 'Disetujui', 'ditolak' => 'Ditolak', 'dipublikasikan' => 'Dipublikasikan'];
             return $labels[$s] ?? $s;
-        }));
-        var statusData = @json($ringkasanStatus->pluck('total'));
-        var paguData = @json($ringkasanStatus->pluck('total_pagu'));
+        })->values()) }};
+        var statusData = {{ json_encode($ringkasanStatus->pluck('total')) }};
+        var paguData = {{ json_encode($ringkasanStatus->pluck('total_pagu')) }};
 
         new Chart(document.getElementById('statusChart'), {
             type: 'doughnut',

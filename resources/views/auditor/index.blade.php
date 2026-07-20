@@ -142,10 +142,10 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const statusLabels = @json($statusLabels ?? ['Draft', 'Diajukan', 'Diverifikasi', 'Disetujui', 'Ditolak']);
-        const statusData  = @json($statusData ?? [0, 0, 0, 0, 0]);
-        const unitLabels  = @json($unitLabels ?? ['Unit Kerja']);
-        const unitData    = @json($unitData ?? [1]);
+        const statusLabels = {{ json_encode($statusLabels ?? ['Draft', 'Diajukan', 'Diverifikasi', 'Disetujui', 'Ditolak']) }};
+        const statusData  = {{ json_encode($statusData ?? [0, 0, 0, 0, 0]) }};
+        const unitLabels  = {{ json_encode($unitLabels ?? ['Unit Kerja']) }};
+        const unitData    = {{ json_encode($unitData ?? [1]) }};
 
         new Chart(document.getElementById('chartStatus'), {
             type: 'bar',

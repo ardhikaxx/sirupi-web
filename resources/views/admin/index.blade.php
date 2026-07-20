@@ -111,8 +111,8 @@
                             <tr>
                                 <td class="ps-4 small">{{ formatTanggal($activity->created_at) }}</td>
                                 <td>{{ $activity->user->name ?? '-' }}</td>
-                                <td>{{ $activity->description }}</td>
-                                <td class="pe-4 text-truncate" style="max-width:200px">{{ $activity->detail ?? '-' }}</td>
+                                <td>{{ $activity->deskripsi }}</td>
+                                <td class="pe-4 text-truncate" style="max-width:200px">{{ $activity->tipe ?? '-' }}</td>
                             </tr>
                         @empty
                             <tr>
@@ -129,10 +129,10 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const statusLabels = @json($statusLabels ?? ['Draft', 'Diajukan', 'Diverifikasi', 'Disetujui', 'Ditolak', 'Dipublikasikan']);
-        const statusData  = @json($statusData ?? [0, 0, 0, 0, 0, 0]);
-        const unitLabels  = @json($unitLabels ?? ['Unit Kerja']);
-        const unitData    = @json($unitData ?? [1]);
+        const statusLabels = {{ json_encode($statusLabels ?? ['Draft', 'Diajukan', 'Diverifikasi', 'Disetujui', 'Ditolak', 'Dipublikasikan']) }};
+        const statusData  = {{ json_encode($statusData ?? [0, 0, 0, 0, 0, 0]) }};
+        const unitLabels  = {{ json_encode($unitLabels ?? ['Unit Kerja']) }};
+        const unitData    = {{ json_encode($unitData ?? [1]) }};
 
         new Chart(document.getElementById('chartStatus'), {
             type: 'bar',

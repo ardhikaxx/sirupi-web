@@ -25,7 +25,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:super_admin,ad
     Route::resource('user', UserController::class);
     Route::post('user/{id}/reset-password', [UserController::class, 'resetPassword'])->name('user.reset-password');
     Route::resource('tahun-anggaran', TahunAnggaranController::class);
-    Route::post('tahun-anggaran/{id}/activate', [TahunAnggaranController::class, 'activate'])->name('tahun-anggaran.activate');
+    Route::post('tahun-anggaran/{id}/activate', [TahunAnggaranController::class, 'setActive'])->name('tahun-anggaran.activate');
     Route::resource('program', ProgramController::class);
     Route::resource('kegiatan', KegiatanController::class);
     Route::resource('sub-kegiatan', SubKegiatanController::class);
@@ -41,6 +41,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:super_admin,ad
     Route::post('paket/{id}/publish', [PaketController::class, 'publish'])->name('paket.publish');
     Route::post('paket/bulk-publish', [PaketController::class, 'bulkPublish'])->name('paket.bulk-publish');
     Route::get('activity-log', [ActivityLogController::class, 'index'])->name('activity-log');
+    Route::get('activity-log/data', [ActivityLogController::class, 'data'])->name('activity-log.data');
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('laporan/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.pdf');
     Route::get('laporan/excel', [LaporanController::class, 'exportExcel'])->name('laporan.excel');

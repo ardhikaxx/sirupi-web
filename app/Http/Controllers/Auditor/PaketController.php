@@ -64,4 +64,25 @@ class PaketController extends Controller
 
         return view('auditor.paket.show', compact('paket', 'activityLogs'));
     }
+
+    public function activityLog(Request $request)
+    {
+        $query = ActivityLog::with('user');
+
+        if ($request->filled('tipe')) {
+            $query->where('tipe', $request->tipe);
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('deskripsi', 'like', "%{$search}%")
+                    ->orWhere('model', 'like', "%{$search}%");
+            });
+        }
+
+        $activityLogs = $query->latest()->paginate(20);
+
+        return view('auditor.activity-log.index', compact('activityLogs'));
+    }
 }

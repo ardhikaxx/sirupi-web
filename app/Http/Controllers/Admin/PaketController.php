@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaketPengadaan;
+use App\Models\TahunAnggaran;
+use App\Models\UnitKerja;
 use App\Services\PaketPengadaanService;
 use App\Services\ActivityLogService;
 use Illuminate\Http\Request;
@@ -48,8 +50,10 @@ class PaketController extends Controller
         }
 
         $pakets = $query->latest()->paginate(15);
+        $tahunAnggarans = TahunAnggaran::all();
+        $unitKerjas = UnitKerja::where('is_active', true)->get();
 
-        return view('admin.paket.index', compact('pakets'));
+        return view('admin.paket.index', compact('pakets', 'tahunAnggarans', 'unitKerjas'));
     }
 
     public function show($id)
